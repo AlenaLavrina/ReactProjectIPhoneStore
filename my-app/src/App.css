@@ -1,0 +1,43 @@
+.App {
+  margin: 0;
+}
+
+.text_section{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text_section h2{
+  text-align: center;
+}
+
+.plus_btn{
+  justify-self: end;
+  background-color: white;
+  border: 1px solid #9F9F9F;
+  border-radius: 10px;
+  padding: 7px;
+  padding-bottom: 4px;
+  cursor: pointer;
+}
+
+.plus_btn img{
+  width: 15px;
+}
+
+.check_btn{
+  justify-self: end;
+  background-color: #001aff82;
+  border: 2px solid #9F9F9F;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 16px;
+  cursor: pointer;
+}
+
+.check_btn img{
+  width: 15px;
+}
+
+
+
