@@ -1,5 +1,6 @@
 import Card from "./card/Card"
 import style from "./products.module.css"
+import axios from 'axios'
 
 const products = [
   {
@@ -49,7 +50,13 @@ const products = [
 const Products = (props) =>{
 
   const onAddToCart = (obj) => {
+    axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/cart', obj)
     props.setCartItems([...props.cartItems, obj]);
+  }
+
+  const addToFavorite = (objFavorite) =>{
+    axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/favorite', objFavorite)
+    props.setFavoriteItems([...props.favoriteItems, objFavorite])
   }
   const onSearchInput = (inputValue) => {
     props.setSearch(inputValue.target.value)
@@ -78,6 +85,11 @@ const Products = (props) =>{
                 description={obj.description}
                 price={obj.price}
                 img={obj.img}
+                AddToFavorite={
+                  (favoriteObj) => {
+                    addToFavorite(favoriteObj)
+                  }
+                }
                 onClickPlus={
                   () => {
                     alert(obj.title)

@@ -59,20 +59,20 @@
       cursor: pointer;
  }
 
-  .favorite_btn_onclick{
-      border: 0;
+    .in_favorite_btn{
+      border: 2px solid #001AFF;
       border-radius: 10px;
-      background-color: #c1c1c1;
-      color: white;
+      background-color: #ffffff;
+      color: #001AFF;
       padding: 7px;
       font-size: 14px;
       text-align: start;
       width: fit-content;
       cursor: pointer;
       transition: transform 0.5s ease-in-out;
-  }
- 
-  .favorite_btn_onclick:hover{
+    }
+
+    .in_favorite_btn:hover{
       transform: translateX(20px);
       cursor: pointer;
     }

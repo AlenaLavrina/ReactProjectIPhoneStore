@@ -16,10 +16,15 @@ header{
   
   .logo{
     color: white;
+    text-decoration: none;
+  }
+  a{
+    text-decoration: none;
   }
   
   .nav_item{
     color: #001AFF;
+    background-color: #000000;
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
