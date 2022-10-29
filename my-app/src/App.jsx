@@ -1,24 +1,23 @@
 import React from 'react';
 import './App.css';
 import Header from './components/header/Header';
-import Banner from './components/banner/Banner';
-import Products from './components/products/Products';
 import Footer from './components/footer/Footer';
 import Cart from './components/cart/Cart';
-import Aboutus from './components/aboutus/aboutus';
 import axios from 'axios';
 import {Route, Routes} from 'react-router-dom'
-
+import Favorites from './components/favorites/Favorites'
+import FavoritesCard from './components/favorites/favoritesCard/favoritesCard'
+import Home from "./components/Home"
 
 function App() {
   //state для хранения товаров
   const [products, setProducts] = React.useState([]);
   //state состояния корзины
   const [cartOpened, setCartOpened] = React.useState(false);
-  //state для хранения товаров в корзине
+  //state для хранения товаров в корзине                                                                                                                                                                                                                                                                 
   const [cartItems, setCartItems] = React.useState([]);
   //state для хранения избранных товаров
-  const [favoriteItems, setFavoriteItems] = React.useState([]);
+  const [favoritesItems, setFavoritesItems] = React.useState([]);
   //state для поиска
   const [search, setSearch] = React.useState('');
 
@@ -39,6 +38,10 @@ function App() {
     setCartItems(res.data)
   })
 
+  axios.get('https://63500d6c78563c1d82b790cf.mockapi.io/favorites').then((res) => {
+    setFavoritesItems(res.data)
+  })
+
   }, [])
 
   const removeCartItem = (id) => {
@@ -49,25 +52,31 @@ function App() {
   return (
     <div className="App">
       {cartOpened ? <Cart removeCartItem={removeCartItem} cartItems={cartItems} closeCart={ () => setCartOpened(false)} /> : null}
-      <Routes>
-        <Route path='/favorite' element={
-          <h1>Вы перешли по пути "/favorite"</h1>
-        }
-        />
-      </Routes>
       <Header openCart={ () => setCartOpened(true)}/>
-      <Banner />      
-      <Aboutus />
-      
-      <Products 
-      items={products} 
-      cartItems={cartItems} 
-      setCartItems={setCartItems} 
-      setSearch={setSearch}
-      search={search}
-      favoriteItems={favoriteItems}
-      setFavoriteItems={setFavoriteItems}/>
-
+      <Routes>
+      <Route path='/favorites' element={
+        <Favorites
+        favoritesItems={favoritesItems}
+        setFavoritesItems={setFavoritesItems}
+        cartItems={cartItems}
+        setCartItems={setCartItems} 
+        />
+      }
+      />
+       
+      <Route path='/' element={
+        <Home 
+        items={products} 
+        cartItems={cartItems} 
+        setCartItems={setCartItems} 
+        setSearch={setSearch}
+        search={search}
+        favoritesItems={favoritesItems}
+        setFavoritesItems={setFavoritesItems}
+        />
+}
+/>
+</Routes>
       <Footer />
     </div>
   );

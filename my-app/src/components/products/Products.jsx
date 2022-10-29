@@ -49,15 +49,37 @@ const products = [
 
 const Products = (props) =>{
 
-  const onAddToCart = (obj) => {
-    axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/cart', obj)
-    props.setCartItems([...props.cartItems, obj]);
+  const onAddToCart = (objCart) => {
+    try{
+      if(props.cartItems.find((item) => item.id === objCart.id)){
+        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/cart/${objCart.id}`)
+        props.setCartItems(prev => prev.filter(item => item.id !==objCart.id))
+      }
+      else{
+        axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/cart', objCart)
+        props.setCartItems([...props.cartItems, objCart]);
+      }
+    }
+    catch{
+      alert('Не удалось добавить товар в корзину')
+    }
   }
 
-  const addToFavorite = (objFavorite) =>{
-    axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/favorite', objFavorite)
-    props.setFavoriteItems([...props.favoriteItems, objFavorite])
+  const AddToFavorites = (objFavorite) =>{
+    try{
+      if(props.favoritesItems.find(obj => obj.id === objFavorite.id)){
+        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/favorites/${objFavorite.id}`)
+      }
+      else{
+        axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/favorites', objFavorite)
+        props.setFavoritesItems([...props.favoritesItems, objFavorite]);
+      }
+    }
+    catch{
+      alert('Не удалось добавить в избранное')
+    } 
   }
+
   const onSearchInput = (inputValue) => {
     props.setSearch(inputValue.target.value)
   }
@@ -81,13 +103,14 @@ const Products = (props) =>{
               return(
                 <Card
                 key = {obj.id}
+                id={obj.id}
                 title={obj.title}
                 description={obj.description}
                 price={obj.price}
                 img={obj.img}
-                AddToFavorite={
-                  (favoriteObj) => {
-                    addToFavorite(favoriteObj)
+                AddToFavorites={
+                  (favoritesObj) => {
+                    AddToFavorites(favoritesObj)
                   }
                 }
                 onClickPlus={

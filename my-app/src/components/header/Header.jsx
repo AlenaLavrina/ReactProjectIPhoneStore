@@ -7,7 +7,7 @@ const Header = (props) =>{
         <h1 className={style.logo}>ITECH</h1>
         </Link>
         <nav>
-          <Link to='/favorite'>
+          <Link to='/favorites'>
           <button className={style.nav_item}>Избранное</button>
           </Link>
           <button className={style.nav_item} onClick = {props.openCart}>Корзина</button>

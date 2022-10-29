@@ -3,33 +3,35 @@ import style from "./card.module.css"
 const Card = (props) =>{
 
   const [added, setAdded] = React.useState(false);
-  const [favorite, setFavorite] = React.useState(false)
+  const [favorites, setFavorites] = React.useState(false)
   
   const onClickPlus = () =>{
+    let id = props.id
     let title = props.title
     let description = props.description
     let price = props.price
     let img = props.img
 
-    props.onPlus({title, description, price, img});
+    props.onPlus({id, title, description, price, img});
     setAdded(!added);
   }
 
-  const AddToFavorite = () =>{
+  const AddToFavorites = () =>{
+    let id = props.id
     let title = props.title
     let description = props.description
     let price = props.price
     let img = props.img
 
-    props.AddToFavorite({title, description, price, img});
-    setFavorite(!favorite);
+    props.AddToFavorites({id, title, description, price, img});
+    setFavorites(!favorites);
   }
 
     return(
         <div className={style.product_item}>
           {
-            favorite === true ? <button onClick={AddToFavorite} className={style.in_favorite_btn}>В избранном</button>
-            : <button className={style.favorite_btn} onClick={AddToFavorite}>Добавить в избранное</button>
+            favorites === true ? <button onClick={AddToFavorites} className={style.in_favorite_btn}>Убрать из избранного</button>
+            : <button className={style.favorite_btn} onClick={AddToFavorites}>Добавить в избранное</button>
           }
             <img className={style.product_img} src={props.img} alt="iPhone XR" />
             <p className={style.product_title}>{props.title}</p>
