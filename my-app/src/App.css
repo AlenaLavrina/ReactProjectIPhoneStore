@@ -14,7 +14,7 @@
 .plus_btn{
   justify-self: end;
   background-color: white;
-  border: 1px solid #9F9F9F;
+  border: 1px solid #2e378e;
   border-radius: 10px;
   padding: 7px;
   padding-bottom: 4px;
@@ -22,21 +22,24 @@
 }
 
 .plus_btn img{
-  width: 15px;
+  filter: invert(80%) sepia(25%) saturate(2900%) hue-rotate(180deg) brightness(50%) contrast(100%);
+  width: 35px;
 }
 
 .check_btn{
   justify-self: end;
-  background-color: #001aff82;
-  border: 2px solid #9F9F9F;
+  border: 2px solid #11b835;
+  background-color: white;
   border-radius: 10px;
-  padding: 20px;
-  padding-bottom: 16px;
+  padding: 7px;
+  padding-bottom: 4px;
   cursor: pointer;
 }
 
 .check_btn img{
-  width: 15px;
+  justify-self: end;
+  filter: invert(55%) sepia(25%) saturate(3800%) hue-rotate(100deg) brightness(80%) contrast(80%);
+  width: 33px;
 }
 
 

@@ -1,6 +1,6 @@
 .product_section{
     max-width: 1200px;
-    height: 1200px;
+    height: 100%;
     margin: 0 auto;
   }
   
@@ -33,7 +33,7 @@
   }
   
   .search_block:hover{
-    border: 1px solid #001aff;
+    border: 1px solid #2e378e;
   }
   
   .search_block img{
@@ -48,5 +48,5 @@
   
   .search_block input:focus-visible{
     outline: none;
-    border-bottom:1px solid #001aff;
+    border-bottom:1px solid #2e378e;
   }

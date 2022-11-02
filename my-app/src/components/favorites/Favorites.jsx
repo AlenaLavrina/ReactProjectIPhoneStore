@@ -2,17 +2,20 @@ import React from "react";
 import style from "./favorites.module.css"
 import axios from 'axios'
 import FavoritesCard from "./favoritesCard/favoritesCard";
+import { AppContext } from "../../App";
 
 const Favorites = (props) => {
 
+    const context = React.useContext(AppContext)
+
     const onAddToFavorites = (obj) => {
-        axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/cart', obj)
-        props.setCartItems([...props.cartItems, obj]);
+        axios.post('http://localhost:3001/cart', obj)
+        context.setCartItems([...context.cartItems, obj]);
       }
 
       const onRemoveFavorites =(id) => {
-        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/favorites/${id}`)
-        props.setFavoritesItems((prev) => prev.filter(item => item.id !== id))
+        axios.delete(`http://localhost:3001/favorites/${id}`)
+        context.setFavoritesItems((prev) => prev.filter(item => item.id !== id))
       }
 
     return(
@@ -22,7 +25,7 @@ const Favorites = (props) => {
             <h2>Избранные товары</h2>
         <div className={style.products}>
             {
-                props.favoritesItems.map(obj => {
+                context.favoritesItems.map(obj => {
                     return(
                         <FavoritesCard
                         key={obj.id}

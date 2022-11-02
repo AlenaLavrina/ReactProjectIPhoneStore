@@ -13,6 +13,7 @@
     background-image: url("/public/img/banner.jpeg");
     background-size: cover;
     background-position: center;
+    margin-top: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 30px;
@@ -25,11 +26,11 @@
   }
   
   .text_banner span{
-    color: #001AFF;
+    color: #2e378e;
   }
   
   .banner_btn{
-    background-color: #001AFF;
+    background-color: #2e378e;
     color: white;
     margin-top: 20px;
     padding: 20px;
@@ -49,5 +50,5 @@
   
   .banner_btn:active{
     background-color: white;
-    color: #001AFF;
+    color: #2e378e;
   }

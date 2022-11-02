@@ -1,7 +1,7 @@
 header{
     display: grid;
     grid-template-columns: 2fr 1fr;
-    background-color: #9eaec0;
+    background-color: #b6bac0;
     padding: 20px;
     padding-left: 50px;
     padding-right: 50px;
@@ -16,7 +16,7 @@ header{
   }
   
   .logo{
-    color: #19837D;
+    color: #2e378e;
     text-decoration: none;
   }
 
@@ -31,7 +31,7 @@ header{
   
   .nav_item{
     color: #19837D;
-    background: #9eaec0;
+    background: #b6bac0;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
@@ -50,19 +50,19 @@ header{
   .count_cart_items{
     font-size: 20px;
     font-weight: bold;
-    background: #9eaec0;
+    background: #b6bac0;
     padding: 5px;
     border-radius: 10px;
-    border-color: #19837D;
-    color: #19837D;
+    border-color: #2e378e;
+    color: #2e378e;
     margin: auto;
   }
 
   .fav_btn{
     display: grid;
-    height: 22%;
-    width: 22%;
-    filter: invert(40%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+    height: 40%;
+    width: 18%;
+    filter: invert(80%) sepia(25%) saturate(2900%) hue-rotate(180deg) brightness(50%) contrast(100%);
     margin-left: 350px;
     padding-right: 50px;
   }
@@ -76,8 +76,8 @@ header{
     overflow:visible;
     z-index: 0;
     height: 80%;
-    width: 60%;
-    filter: invert(40%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+    width: 50%;
+    filter: invert(80%) sepia(25%) saturate(2900%) hue-rotate(180deg) brightness(50%) contrast(100%);
     margin-right: 120px;
     padding-left: 50px;
   }

@@ -1,0 +1,77 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "myId": 1,
+      "title": "iPhone 12 128Gb",
+      "price": 59900,
+      "img": "/img/iphone-12.jpg"
+    },
+    {
+      "id": 2,
+      "myId": 2,
+      "title": "iPhone 12 Pro 256Gb",
+      "price": 89999,
+      "img": "/img/iphone-12pro.jpg"
+    },
+    {
+      "id": 3,
+      "myId": 3,
+      "title": "iPhone 13 128Gb",
+      "price": 63780,
+      "img": "/img/iphone-13.jpg"
+    },
+    {
+      "id": 4,
+      "myId": 4,
+      "title": "iPhone 13 Pro 128Gb",
+      "price": 82440,
+      "img": "/img/iphone-13pro.jpg"
+    },
+    {
+      "id": 5,
+      "myId": 5,
+      "title": "iPhone 13 Pro Max 256Gb",
+      "price": 96370,
+      "img": "/img/iphone-13pro-max.jpg"
+    },
+    {
+      "id": 6,
+      "myId": 6,
+      "title": "iPhone 13 mini 128Gb",
+      "price": 55690,
+      "img": "/img/iphone-13mini.jpg"
+    },
+    {
+      "id": 7,
+      "myId": 6,
+      "title": "iPhone 14 128Gb",
+      "price": 89999,
+      "img": "/img/iphone-14.jpg"
+    },
+    {
+      "id": 8,
+      "myId": 6,
+      "title": "iPhone 14 Pro 256Gb",
+      "price": 129999,
+      "img": "/img/iphone-14pro.jpg"
+    },
+    {
+      "id": 9,
+      "myId": 6,
+      "title": "iPhone 14 Pro Max 512Gb",
+      "price": 55690,
+      "img": "/img/iphone-14pro-max.jpg"
+    }
+  ],
+  "cart": [
+    {
+      "id": 2,
+      "myId": 2,
+      "title": "iPhone 12 Pro 256Gb",
+      "price": 89999,
+      "img": "/img/iphone-12pro.jpg"
+    }
+  ],
+  "favorites": []
+}

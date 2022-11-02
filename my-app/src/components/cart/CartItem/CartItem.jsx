@@ -5,7 +5,7 @@ const CartItem = (props) => {
               <img className={style.cart_img} src={props.img} alt="" />
               <h3 className={style.cart_title}>{props.title}
               <br />
-              <span className={style.cart_price}>{props.price}</span>
+              <span className={style.cart_price}>{props.price} руб.</span>
               </h3>
               <button onClick={() => props.removeCartItem(props.id)} className={style.close_btn}>X</button>
             </div>

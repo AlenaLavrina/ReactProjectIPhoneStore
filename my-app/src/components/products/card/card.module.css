@@ -1,6 +1,7 @@
 .product_img{
     justify-self: center;
     width: 200px;
+    padding-top: 10px;
   }
   
   .product_title{
@@ -44,7 +45,7 @@
   .favorite_btn{
     border: 0;
     border-radius: 10px;
-    background-color: #001AFF;
+    background-color: #2e378e;
     color: white;
     padding: 7px;
     font-size: 14px;
@@ -60,10 +61,10 @@
  }
 
     .in_favorite_btn{
-      border: 2px solid #001AFF;
+      border: 2px solid #2e378e;
       border-radius: 10px;
       background-color: #ffffff;
-      color: #001AFF;
+      color: #2e378e;
       padding: 7px;
       font-size: 14px;
       text-align: start;

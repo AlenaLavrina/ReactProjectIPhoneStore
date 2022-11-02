@@ -1,18 +1,18 @@
 footer{
     display: grid;
     grid-template-columns: 1fr 2fr;
-    background-color: #9eaec0;
+    background-color: #b6bac0;
     padding: 30px;
     justify-items: center;
     align-items: center;
   }
   
   footer p{
-    color: white;
+    color: #2e378e;
   }
   
   footer .logo{
     font-size: 45px;
     font-weight: bold;
-    color: white;
+    color: #2e378e;
   }

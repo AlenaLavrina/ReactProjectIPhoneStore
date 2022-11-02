@@ -9,11 +9,11 @@ const Products = (props) =>{
     try{
       const findCartItem = props.cartItems.find((cartItem) => cartItem.myId === objCart.myId)
       if(findCartItem){
-        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/cart/${findCartItem.id}`)
+        axios.delete(`http://localhost:3001/cart/${findCartItem.id}`)
         props.setCartItems(prev => prev.filter(cartItem => cartItem.id !==objCart.myId))
       }
       else{
-        const {data} = await axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/cart', objCart)
+        const {data} = await axios.post('http://localhost:3001/cart', objCart)
         props.setCartItems([...props.cartItems, data]);
       }
     }
@@ -26,10 +26,11 @@ const Products = (props) =>{
     try{
       const findFavoriteItem = props.favoritesItems.find(favoriteItem => favoriteItem.myId === objFavorite.id)
       if(findFavoriteItem){
-        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/favorites/${findFavoriteItem.id}`)
+        axios.delete(`http://localhost:3001/favorites/${findFavoriteItem.id}`)
+        props.setFavoritesItems(prev => prev.filter(favoriteItem => favoriteItem.id !==objFavorite.myId))
       }
       else{
-        const {data} = await axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/favorites', objFavorite)
+        const {data} = await axios.post('http://localhost:3001/favorites', objFavorite)
         props.setFavoritesItems([...props.favoritesItems, objFavorite]);
       }
     }
@@ -42,63 +43,44 @@ const Products = (props) =>{
     props.setSearch(inputValue.target.value)
   }
    
-  const renderCard = () => {
-    const filterItems = props.items.filter((item) => 
-    item.title.toLowerCase().includes(props.search.toLowerCase()))
-  
-
-  return(props.loading ? [...Array(6)] : filterItems).map((obj, index) => {
-    return(
-      <Card
-                key = {index}
-                {...obj}
-               
-                isAdded={props.cartItems.some((objIsAdded) => objIsAdded.myId === obj.myId)}
-                isFavorite={props.favoritesItems.some((objIsFavorite) => objIsFavorite.myId === obj.myId)}
-                isLoading={props.loading}
-                AddToFavorites={
-                  (favoritesObj) => {
-                    AddToFavorites(favoritesObj)
-                  }
-                }
-                onClickPlus={
-                  () => {
-                    alert(obj.title)
-                  }
-                }
-
-                /*onClickFavorite={
-                    () =>{
-                      
-                      alert('Товар ' + obj.title + ' добавлен в избранное')
-                    }
-                  }*/
-                  onPlus={(cartObj) =>{
-                    onAddToCart(cartObj)
-                  }}
-                />
-    )
-  })
-}
-    return(
-        <div className={style.product_section}>
-          <div className={style.search}>
-          
+  return(
+    <div className={style.product_section}>
+      <div className={style.search}>  
         <h2>{props.search ? 'Поиск по запросу: ' + props.search : 'Все смартфоны' }</h2>
         <div className={style.search_block}>
-          <img src="/img/search.png" alt="search" />
-          <input onChange={onSearchInput} placeholder="Поиск по товарам" />
-        </div>
-        </div>
-        <div className={style.products}>
-          {
-            renderCard()
-          }
-
-        </div>
+        <img src="/img/search.png" alt="search" />
+        <input onChange={onSearchInput} placeholder="Поиск по товарам" />
       </div>
-    )
+    </div>
+  <div className={style.products}>{
+  (props.items.filter((item) => 
+  item.title.toLowerCase().includes(props.search.toLowerCase()))).map((obj, index) =>{
+      return(
+        <Card
+          key = {index}
+          {...obj}        
+          //isAdded={props.cartItems.some((objIsAdded) => objIsAdded.myId === obj.myId)}
+         isFavorite={props.favoritesItems.some((objIsFavorite) => objIsFavorite.myId === obj.myId)}
+                          
+        AddToFavorites={(favoritesObj) => {
+            AddToFavorites(favoritesObj)
+            }
+          }
+        onClickPlus={ () => {
+          alert(obj.title)
+        }
+      }
+        onPlus={(cartObj) =>{
+          onAddToCart(cartObj)
+            }
+          }
+            />
+          )
+       })
+    }
+   </div>
+  </div>
+   )
 }
-
 
 export default Products
