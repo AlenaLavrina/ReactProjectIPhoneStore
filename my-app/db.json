@@ -64,14 +64,7 @@
       "img": "/img/iphone-14pro-max.jpg"
     }
   ],
-  "cart": [
-    {
-      "id": 2,
-      "myId": 2,
-      "title": "iPhone 12 Pro 256Gb",
-      "price": 89999,
-      "img": "/img/iphone-12pro.jpg"
-    }
-  ],
+  "cart": [],
+  
   "favorites": []
 }
