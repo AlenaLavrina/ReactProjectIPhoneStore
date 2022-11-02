@@ -1,7 +1,7 @@
 header{
     display: grid;
     grid-template-columns: 2fr 1fr;
-    background-color: black;
+    background-color: #9eaec0;
     padding: 20px;
     padding-left: 50px;
     padding-right: 50px;
@@ -9,23 +9,30 @@ header{
   
   nav{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     justify-items: end;
     align-items: center;
+    
   }
   
   .logo{
+    color: #19837D;
+    text-decoration: none;
+  }
+
+  .logo:hover{
     color: white;
     text-decoration: none;
   }
+
   a{
     text-decoration: none;
   }
   
   .nav_item{
-    color: #001AFF;
-    background-color: #000000;
-    font-size: 30px;
+    color: #19837D;
+    background: #9eaec0;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
@@ -33,4 +40,48 @@ header{
   
   .nav_item:hover{
     color:white;
+  }
+  
+  .cart_btn{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+  }
+
+  .count_cart_items{
+    font-size: 20px;
+    font-weight: bold;
+    background: #9eaec0;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: #19837D;
+    color: #19837D;
+    margin: auto;
+  }
+
+  .fav_btn{
+    display: grid;
+    height: 22%;
+    width: 22%;
+    filter: invert(40%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+    margin-left: 350px;
+    padding-right: 50px;
+  }
+
+  .fav_btn:hover{
+    filter: invert(100%) sepia(13%) saturate(307%) hue-rotate(130deg) brightness(95%) contrast(80%);
+  }
+
+  .cartbtn{
+    display: grid;
+    overflow:visible;
+    z-index: 0;
+    height: 80%;
+    width: 60%;
+    filter: invert(40%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+    margin-right: 120px;
+    padding-left: 50px;
+  }
+
+  .cartbtn:hover{
+    filter: invert(100%) sepia(13%) saturate(307%) hue-rotate(130deg) brightness(95%) contrast(80%);
   }

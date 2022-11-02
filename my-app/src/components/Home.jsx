@@ -15,6 +15,7 @@ const Home = (props) => {
                 search={props.search}
                 favoritesItems={props.favoritesItems}
                 setFavoritesItems={props.setFavoritesItems}
+                loading={props.loading}
             />
         </>
     )

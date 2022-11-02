@@ -20,6 +20,8 @@ function App() {
   const [favoritesItems, setFavoritesItems] = React.useState([]);
   //state для поиска
   const [search, setSearch] = React.useState('');
+  //state для хранения состояния загрузки
+  const [loading, setLoading] = React.useState(true);
 
 
   React.useEffect(() => {
@@ -30,18 +32,18 @@ function App() {
     setProducts(myJson)
   });*/
 
-  axios.get('https://63500d6c78563c1d82b790cf.mockapi.io/products').then((res) => {
-    setProducts(res.data)
-  })
+  async function axiosData(){
+    const cartData = await axios.get('https://63500d6c78563c1d82b790cf.mockapi.io/cart')
+    const favoritesData = await axios.get('https://63500d6c78563c1d82b790cf.mockapi.io/favorites')
+    const productsData = await axios.get('https://63500d6c78563c1d82b790cf.mockapi.io/products')
 
-  axios.get('https://63500d6c78563c1d82b790cf.mockapi.io/cart').then((res) => {
-    setCartItems(res.data)
-  })
+    setLoading(false)
 
-  axios.get('https://63500d6c78563c1d82b790cf.mockapi.io/favorites').then((res) => {
-    setFavoritesItems(res.data)
-  })
-
+    setCartItems(cartData.data);
+    setFavoritesItems(favoritesData.data);
+    setProducts(productsData.data);
+  }
+  axiosData()
   }, [])
 
   const removeCartItem = (id) => {
@@ -52,7 +54,7 @@ function App() {
   return (
     <div className="App">
       {cartOpened ? <Cart removeCartItem={removeCartItem} cartItems={cartItems} closeCart={ () => setCartOpened(false)} /> : null}
-      <Header openCart={ () => setCartOpened(true)}/>
+      <Header openCart={ () => setCartOpened(true)} cartItems={cartItems}/>
       <Routes>
       <Route path='/favorites' element={
         <Favorites
@@ -73,6 +75,7 @@ function App() {
         search={search}
         favoritesItems={favoritesItems}
         setFavoritesItems={setFavoritesItems}
+        loading={loading}
         />
 }
 />

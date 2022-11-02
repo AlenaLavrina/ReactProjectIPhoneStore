@@ -8,9 +8,16 @@ const Header = (props) =>{
         </Link>
         <nav>
           <Link to='/favorites'>
-          <button className={style.nav_item}>Избранное</button>
+          <div className={style.nav_item}>
+          <img className={style.fav_btn} src='/img/favorite.png' alt="favorite" />
+          </div>
           </Link>
-          <button className={style.nav_item} onClick = {props.openCart}>Корзина</button>
+          <div className={style.cart_btn}>
+              <div className={style.nav_item} onClick = {props.openCart}>
+              <img className={style.cartbtn} src='/img/cart.png' alt="cart" />
+              </div>
+              <button className={style.count_cart_items}>{props.cartItems.length}</button>
+          </div>
         </nav>
       </header>
     )

@@ -2,62 +2,19 @@ import Card from "./card/Card"
 import style from "./products.module.css"
 import axios from 'axios'
 
-const products = [
-  {
-    id: 1,
-    title: 'iPhone XR_1',
-    description: 'Короткое описание продукта',
-    price: '42 999',
-    img: '/img/iphone-1.png'
-  },
-  {
-    id: 2,
-    title: 'iPhone XR_2',
-    description: 'Короткое описание продукта',
-    price: '42 999',
-    img: '/img/iphone-1.png'
-  },
-  {
-    id: 3,
-    title: 'iPhone XR_3',
-    description: 'Короткое описание продукта',
-    price: '42 999',
-    img: '/img/iphone-1.png'
-  },
-  {
-    id: 4,
-    title: 'iPhone XR_4',
-    description: 'Короткое описание продукта',
-    price: '42 999',
-    img: '/img/iphone-1.png'
-  },
-  {
-    id: 5,
-    title: 'iPhone XR_5',
-    description: 'Короткое описание продукта',
-    price: '42 999',
-    img: '/img/iphone-1.png'
-  },
-  {
-    id: 6,
-    title: 'iPhone XR_6',
-    description: 'Короткое описание продукта',
-    price: '42 999',
-    img: '/img/iphone-1.png'
-  }  
-];
 
 const Products = (props) =>{
 
-  const onAddToCart = (objCart) => {
+  const onAddToCart = async(objCart) => {
     try{
-      if(props.cartItems.find((item) => item.id === objCart.id)){
-        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/cart/${objCart.id}`)
-        props.setCartItems(prev => prev.filter(item => item.id !==objCart.id))
+      const findCartItem = props.cartItems.find((cartItem) => cartItem.myId === objCart.myId)
+      if(findCartItem){
+        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/cart/${findCartItem.id}`)
+        props.setCartItems(prev => prev.filter(cartItem => cartItem.id !==objCart.myId))
       }
       else{
-        axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/cart', objCart)
-        props.setCartItems([...props.cartItems, objCart]);
+        const {data} = await axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/cart', objCart)
+        props.setCartItems([...props.cartItems, data]);
       }
     }
     catch{
@@ -65,13 +22,14 @@ const Products = (props) =>{
     }
   }
 
-  const AddToFavorites = (objFavorite) =>{
+  const AddToFavorites = async (objFavorite) =>{
     try{
-      if(props.favoritesItems.find(obj => obj.id === objFavorite.id)){
-        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/favorites/${objFavorite.id}`)
+      const findFavoriteItem = props.favoritesItems.find(favoriteItem => favoriteItem.myId === objFavorite.id)
+      if(findFavoriteItem){
+        axios.delete(`https://63500d6c78563c1d82b790cf.mockapi.io/favorites/${findFavoriteItem.id}`)
       }
       else{
-        axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/favorites', objFavorite)
+        const {data} = await axios.post('https://63500d6c78563c1d82b790cf.mockapi.io/favorites', objFavorite)
         props.setFavoritesItems([...props.favoritesItems, objFavorite]);
       }
     }
@@ -83,31 +41,21 @@ const Products = (props) =>{
   const onSearchInput = (inputValue) => {
     props.setSearch(inputValue.target.value)
   }
-    let priceProduct="42 999"
+   
+  const renderCard = () => {
+    const filterItems = props.items.filter((item) => 
+    item.title.toLowerCase().includes(props.search.toLowerCase()))
+  
 
+  return(props.loading ? [...Array(6)] : filterItems).map((obj, index) => {
     return(
-        <div className={style.product_section}>
-          <div className={style.search}>
-          
-        <h2>{props.search ? 'Поиск по запросу: ' + props.search : 'Все смартфоны' }</h2>
-        <div className={style.search_block}>
-          <img src="/img/search.png" alt="search" />
-          <input onChange={onSearchInput} placeholder="Поиск по товарам" />
-        </div>
-        </div>
-        <div className={style.products}>
-
-          {
-            props.items.filter((item) => item.title.toLowerCase().includes(props.search.toLowerCase())) 
-            .map(obj => {
-              return(
-                <Card
-                key = {obj.id}
-                id={obj.id}
-                title={obj.title}
-                description={obj.description}
-                price={obj.price}
-                img={obj.img}
+      <Card
+                key = {index}
+                {...obj}
+               
+                isAdded={props.cartItems.some((objIsAdded) => objIsAdded.myId === obj.myId)}
+                isFavorite={props.favoritesItems.some((objIsFavorite) => objIsFavorite.myId === obj.myId)}
+                isLoading={props.loading}
                 AddToFavorites={
                   (favoritesObj) => {
                     AddToFavorites(favoritesObj)
@@ -129,10 +77,24 @@ const Products = (props) =>{
                     onAddToCart(cartObj)
                   }}
                 />
-              )
-            }
-            )
+    )
+  })
+}
+    return(
+        <div className={style.product_section}>
+          <div className={style.search}>
+          
+        <h2>{props.search ? 'Поиск по запросу: ' + props.search : 'Все смартфоны' }</h2>
+        <div className={style.search_block}>
+          <img src="/img/search.png" alt="search" />
+          <input onChange={onSearchInput} placeholder="Поиск по товарам" />
+        </div>
+        </div>
+        <div className={style.products}>
+          {
+            renderCard()
           }
+
         </div>
       </div>
     )
