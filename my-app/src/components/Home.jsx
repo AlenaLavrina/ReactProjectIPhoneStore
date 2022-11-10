@@ -1,11 +1,12 @@
 import Banner from "./banner/Banner"
 import Aboutus from "./aboutus/aboutus"
 import Products from "./products/Products"
+import TestSlider from "./slider/TestSlider"
 
 const Home = (props) => {
     return(
-        <>
-            <Banner />      
+        <>  
+            <TestSlider />     
             <Aboutus />
             <Products 
                 items={props.items} 

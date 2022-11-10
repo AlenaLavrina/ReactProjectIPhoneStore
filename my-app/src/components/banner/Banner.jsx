@@ -1,4 +1,4 @@
-import style from "./banner.module.css"
+/*import style from "./banner.module.css"
 const Banner = () =>{
     return(
         <div className={style.banner_section}>
@@ -14,4 +14,4 @@ const Banner = () =>{
     )
 }
 
-export default Banner
+export default Banner*/
